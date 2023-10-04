@@ -1,0 +1,97 @@
+:host {
+  display: block;
+}
+
+$gray-300: #dee2e6;
+
+.calculator {
+  background-color: $gray-300;
+  padding: 20px;
+  border-radius: 6px;
+  margin-bottom: 50px;
+  .row {
+    margin-bottom: 30px;
+    .col {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+.form-label {
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 24px;
+  color: #424242;
+  max-width: 100%;
+  margin-bottom: 0;
+}
+.range-caption {
+  display: flex;
+  justify-content: space-between;
+}
+
+.result {
+  &-card {
+    background-color: $gray-300;
+    padding: 20px;
+    border-radius: 6px;
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 24px;
+    color: #424242;
+    max-width: 100%;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+}
+
+.range input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 5px;
+  background: #ddd; /* ez a háttérszín a csúszka jobb oldalához */
+  outline: none;
+  cursor: pointer;
+  margin: 10px 0;
+  transition: background-color 0.2s;
+}
+
+.range input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background: linear-gradient(to right, #5cbac4, #203667); /* csúszka gomb színe */
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.range input[type='range']::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #203667;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 6px solid white;
+}
+
+.range input[type='range']::-webkit-slider-runnable-track {
+  height: 5px;
+  cursor: pointer;
+  background: linear-gradient(
+    to right,
+    orange 0%,
+    orange 50%,
+    #ddd 50%,
+    #ddd 100%
+  ); /* ezzel a gradienttel állítjuk be a bal oldali színt */
+}
+
+.range input[type='range']::-moz-range-progress {
+  height: 10px;
+  background: linear-gradient(to right, #5cbac4, #203667); /* ezzel színezzük a bal oldali részt Firefox böngészőben */
+  border-radius: 3px;
+}

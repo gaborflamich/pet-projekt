@@ -1,0 +1,90 @@
+# Made up stage names for grouping Jobs.
+# Stages will run in this specified order. If a previous stage fails, the next stage will not run.
+# Jobs in a stage will run in parallel.
+stages:
+  - test # lint and unittests can be ran before the actual build - if they fail there is no point in building anyway
+  - build
+  - deploy-dev
+  - restart-dev
+
+variables:
+  # We will be placing two things into this:
+  # - a /dist folder containing the static clientside app we built, and also a nodejs server that can serve those static files
+  # - a /node_modules folder containing the runtime dependencies for that nodejs server
+  APP_OUTPUT_PATH: '/var/www/front-end'
+
+# Global cache to avoid installing dependencies unnecessarily
+cache:
+  key:
+    ${CI_COMMIT_REF_SLUG}
+    # files:
+    #  - package-lock.json # only recreate the cache if this file changed
+  paths:
+    - .npm/
+
+before_script:
+  - npm set //dev-nexus.trendency.hu/repository/npm-hosted/:$token
+  - npm ci --cache .npm --prefer-offline
+
+build-angular-app:
+  stage: build
+  script:
+    - npm run build:ssr-dev
+  artifacts: # store these folders to be available in later Stages automatically
+    paths:
+      - dist/
+    expire_in: 1 day
+
+lint-angular-app:
+  stage: test
+  script:
+    - npm run lint
+
+prettier-check-angular-app:
+  stage: test
+  allow_failure: true
+  script:
+    - npm run format
+
+commit-message-conventional-commits-jira-id-check:
+  stage: test
+  allow_failure: true
+  script:
+    # checks the currently checked out commit's message for conventional commits syntax
+    # also check for a jira ticket ID but does not fail if that's not found
+    # see commitlint.config.js
+    - git log --format=%B -n 1 HEAD | npx --no-install commitlint
+
+.unittest-angular-app:
+  stage: test
+  allow_failure: true
+  script:
+    - npx ng test
+
+# Copy the built static files from the dist folder
+# If the app is served with nginx this is all you need
+# It does not have any dependencies outside of the dist/ folder
+deploy-angular-app:
+  stage: deploy-dev
+  only:
+    - develop
+  dependencies: # copy Artifacts from these jobs only
+    - build-angular-app
+  script:
+    - rm -rf $APP_OUTPUT_PATH/*
+    - rsync -a --exclude '.git' --exclude '.npm' . $APP_OUTPUT_PATH
+
+# If the app is served with angular's own server then we need the
+# node_modules folder as well due to it containing our runtime dependencies for the server
+restart-angular-server:
+  stage: restart-dev
+  only:
+    - develop
+  # We do not need the global cache or before_script if we
+  # do not actually use anything from them in this particular job.
+  cache: {}
+  before_script: []
+  script:
+    - cd $APP_OUTPUT_PATH
+    - $(npm get prefix)/bin/pm2 flush
+    - $(npm get prefix)/bin/pm2 startOrRestart ecosystem.config.json --time --only angular-skeleton-dev

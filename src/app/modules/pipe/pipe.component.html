@@ -1,0 +1,92 @@
+<section>
+  <div class="wrapper">
+    <h1>Pipes</h1>
+
+    <h2>Filter Pipe</h2>
+    <article>
+      <div>
+        <form>
+          <input type="text" [formControl]="control" placeholder="Search items" id="searchField" class="form-control mb-4" />
+        </form>
+        <ul class="list-group mb-4">
+          <li class="list-group-item" *ngFor="let item of itemsArray1 | filter : control.value">{{ item }}</li>
+        </ul>
+      </div>
+    </article>
+
+    <h2>Publish Date</h2>
+    <article class="grid-2">
+      <div class="card">
+        <p>{{ date }}</p>
+      </div>
+      <div class="card">
+        <h4>Short</h4>
+        <p>{{ date | date : 'short' }}</p>
+        <h4>Short Date</h4>
+        <p>{{ date | date : 'shortDate' }}</p>
+        <h4>Medium Date</h4>
+        <p>{{ date | date : 'mediumDate' }}</p>
+        <h4>Long Date</h4>
+        <p>{{ date | date : 'longDate' }}</p>
+        <h4>Full Date</h4>
+        <p>{{ date | date : 'fullDate' : '' : 'hu' }}</p>
+        <h4>Medium</h4>
+        <p>{{ date | date : 'medium' }}</p>
+        <h4>Long</h4>
+        <p>{{ date | date : 'long' }}</p>
+        <h4>Custom</h4>
+        <p>{{ date | publish }}</p>
+      </div>
+    </article>
+
+    <h2>Shorten Pipe</h2>
+    <article class="grid-2">
+      <div class="card">
+        <h3>Teljes szöveg</h3>
+        <p>{{ text }}</p>
+      </div>
+      <div class="card">
+        <h3>Kivonat</h3>
+        <p>{{ text | summary }}</p>
+      </div>
+    </article>
+
+    <h2>Safe HTML Pipe</h2>
+    <article class="grid-2">
+      <div class="card">
+        <h3>HTML</h3>
+        {{ htmlString }}
+      </div>
+
+      <div class="card">
+        <h3>Safe HTML</h3>
+        <div [innerHTML]="htmlString | safeHtml"></div>
+      </div>
+    </article>
+
+    <h2>OrderBy</h2>
+    <article class="grid-3">
+      <div>
+        <h3>Rendezettlen tömb</h3>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let item of itemsArray1">{{ item }}</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Növekvő sorrend</h3>
+
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let item of itemsArray2 | orderBy : 'asc'">{{ item }}</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Csökkenő sorrend</h3>
+
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let item of itemsArray3 | orderBy : 'desc'">{{ item }}</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>

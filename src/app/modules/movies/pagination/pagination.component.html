@@ -1,0 +1,27 @@
+<h2>Movies</h2>
+<div class="movies grid-4 mb-4">
+  <div class="card" *ngFor="let item of displayedItems$ | async">
+    <img class="card-img-top" [src]="item.image ? item.image : placeholder" [alt]="item.title" />
+    <h4 class="card-header">{{ item.title }}</h4>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Year: {{ item.year }}</li>
+      <li class="list-group-item">Genre: {{ item.genre }}</li>
+      <li class="list-group-item">IMDb Rating: {{ item.imdb }}</li>
+    </ul>
+    <div class="card-footer"></div>
+  </div>
+</div>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <button [disabled]="currentPage$.value === 1" (click)="previousPage()" class="page-link bg-dark text-white" href="#">Previous</button>
+    </li>
+    <li class="page-item"><a class="page-link bg-dark text-white" href="#">1</a></li>
+    <li class="page-item"><a class="page-link bg-dark text-white" href="#">2</a></li>
+    <li class="page-item"><a class="page-link bg-dark text-white" href="#">3</a></li>
+    <li class="page-item">
+      <button [disabled]="currentPage$.value === totalPages" (click)="nextPage()" class="page-link bg-dark text-white">Next</button>
+    </li>
+  </ul>
+</nav>

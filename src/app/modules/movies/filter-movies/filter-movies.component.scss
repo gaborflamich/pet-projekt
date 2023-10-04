@@ -1,0 +1,9 @@
+$gray-200: #e9ecef;
+:host {
+  display: block;
+}
+.filter {
+  background-color: $gray-200;
+  padding: 20px;
+  border-radius: 5px;
+}

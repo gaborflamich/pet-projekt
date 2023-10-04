@@ -1,0 +1,8 @@
+// Bootstrap
+@use '../../node_modules/bootstrap/scss/bootstrap.scss';
+// Base
+@use 'base';
+// Layout wrapper
+@use 'layout/wrapper';
+// Components
+@use 'components';

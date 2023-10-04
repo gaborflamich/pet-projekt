@@ -1,0 +1,27 @@
+<h1>Todo List</h1>
+<p>This is a Todo List CRUD component, with FireBase FireStore database integration.</p>
+<form [formGroup]="form" (ngSubmit)="onFormSubmit()">
+  <div class="form-fields mb-3 row">
+    <div class="col-md-12">
+      <input #titleInput formControlName="formTitle" type="text" class="form-control text-bg-light" placeholder="Title" />
+    </div>
+  </div>
+  <div class="buttons mb-3">
+    <button type="submit" class="btn" [ngClass]="{ 'btn-dark': !isEditing, 'btn-success': isEditing }">
+      {{ isEditing ? 'Save' : 'Add Item' }}
+    </button>
+    <button type="button" *ngIf="isEditing" (click)="onCancel()" class="btn btn-secondary">Close</button>
+  </div>
+</form>
+<ul class="list-group">
+  <li class="list-group-item text-bg-light" [ngClass]="item.completed ? 'complete' : ''" *ngFor="let item of todolist$ | async">
+    {{ item.title }}
+    <div class="buttons">
+      <button (click)="onComplete(item)" [ngClass]="item.completed ? 'btn-dark' : 'btn-success'" type="button" class="btn">
+        {{ item.completed ? 'Undo' : 'Complete' }}
+      </button>
+      <button (click)="onEdit(item.id, item.title)" type="button" class="btn btn-warning">Edit</button>
+      <button (click)="onDelete(item.id)" type="button" class="btn btn-danger">Delete</button>
+    </div>
+  </li>
+</ul>

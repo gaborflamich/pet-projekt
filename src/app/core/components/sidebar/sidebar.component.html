@@ -1,0 +1,31 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark card">
+  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+    <span class="fs-4">Apps</span>
+  </a>
+  <hr />
+  <ul class="nav nav-pills flex-column mb-4" *ngIf="mockData$ | async as mockData">
+    <li *ngFor="let item of mockData.apps; let i = index" class="nav-item">
+      <a [routerLink]="item.url" routerLinkActive="active" class="nav-link text-white">{{ item.title }}</a>
+      <ul *ngIf="item.children" class="child-list">
+        <li *ngFor="let child of item.children" class="child-list-item">
+          <a class="child-list-item-link text-white" [href]="child.url">{{ child.title }}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <hr />
+
+  <h3>Small Components</h3>
+  <hr />
+  <ul class="nav nav-pills flex-column mb-auto" *ngIf="mockData$ | async as mockData">
+    <li *ngFor="let item of mockData.components; let i = index" class="nav-item">
+      <a [routerLink]="item.url" routerLinkActive="active" class="nav-link text-white">{{ item.title }}</a>
+      <ul *ngIf="item.children" class="child-list">
+        <li *ngFor="let child of item.children" class="child-list-item">
+          <a class="child-list-item-link text-white" [href]="child.url">{{ child.title }}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,35 @@
+<h1>Expense Tracker</h1>
+<p>This is a Expense Tracker CRUD component, with FireBase FireStore database integration.</p>
+<form [formGroup]="form" (ngSubmit)="onFormSubmit()">
+  <div class="form-fields mb-3 row">
+    <div class="col-md-8">
+      <input #titleInput formControlName="formTitle" type="text" class="form-control text-bg-light" placeholder="Title" />
+    </div>
+    <div class="col-md-4">
+      <input #priceInput formControlName="formPrice" type="text" class="form-control text-bg-light" placeholder="Price" />
+    </div>
+  </div>
+  <div class="buttons mb-3">
+    <button type="submit" class="btn" [ngClass]="{ 'btn-dark': !isEditing, 'btn-success': isEditing }">
+      {{ isEditing ? 'Save' : 'Add Item' }}
+    </button>
+    <button type="button" *ngIf="isEditing" (click)="onCancel()" class="btn btn-secondary">Close</button>
+  </div>
+</form>
+<ul class="list-group mb-4">
+  <li class="list-group-item text-bg-light" *ngFor="let item of expenselist$ | async">
+    <div class="list-group-item-caption">
+      <span class="list-group-item-title">{{ item.title }}</span>
+      <span class="badge">{{ item.price | currency : 'HUF' : 'Ft' : '1.0-0' : 'hu-HU' }}</span>
+    </div>
+    <div class="buttons">
+      <button (click)="onEdit(item.id, item.title, item.price)" type="button" class="btn btn-warning">Edit</button>
+      <button (click)="onDelete(item.id)" type="button" class="btn btn-danger">Delete</button>
+    </div>
+  </li>
+</ul>
+<div class="card">
+  <div class="card-body">
+    <h2 class="cart-title mb-0">Total: {{ total | currency : 'HUF' : 'Ft' : '1.0-0' : 'hu-HU' }}</h2>
+  </div>
+</div>

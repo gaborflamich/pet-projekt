@@ -1,0 +1,49 @@
+<h2>{{ isEditing ? 'Edit movie' : 'Add movie' }}</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="movies mb-4">
+  <div class="row">
+    <div class="col">
+      <label class="form-label" for="formTitle">Title</label>
+      <input #formTitle type="text" class="form-control" formControlName="formTitle" id="formTitle" placeholder="" />
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <label class="form-label" for="formGenre">Genre</label>
+      <select id="formGenre" formControlName="formGenre" class="form-select">
+        <option selected>Select ...</option>
+        <option>Thriller</option>
+        <option>Romantic</option>
+        <option>Action</option>
+        <option>Drama</option>
+        <option>Sci-fi</option>
+        <option>Comedy</option>
+      </select>
+    </div>
+    <div class="col">
+      <label class="form-label" for="formImdb">IMDB Rating</label>
+      <input type="text" class="form-control" formControlName="formImdb" id="formImdb" placeholder="" />
+    </div>
+    <div class="col">
+      <label class="form-label" for="formYear">Year</label>
+      <input type="text" class="form-control" formControlName="formYear" id="formYear" placeholder="" />
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <label class="form-label" for="formImage">Image Source</label>
+      <input type="text" class="form-control" formControlName="formImage" id="formImage" placeholder="" />
+    </div>
+  </div>
+  <hr />
+  <button type="submit" class="btn btn-dark">{{ isEditing ? 'Update movie' : 'Add movie' }}</button>
+</form>
+
+<div
+  *ngIf="feedbackMessage"
+  class="card"
+  [ngClass]="{ 'success-card': feedbackType === 'success', 'error-card': feedbackType === 'error' }"
+>
+  {{ feedbackMessage }}
+</div>

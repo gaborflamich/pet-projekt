@@ -1,0 +1,16 @@
+<section>
+  <div class="wrapper">
+    <h1>Albums</h1>
+    <p>
+      Receive data from remote API, display a list of albums. <br />
+      <small>https://jsonplaceholder.typicode.com/albums</small>
+    </p>
+    <div class="card-wrapper">
+      <div class="card" *ngFor="let album of albums">
+        <p class="card-title">
+          <a class="card-title-link" [routerLink]="['/albums', album.id]">#{{ album.id }} - {{ album.title }}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

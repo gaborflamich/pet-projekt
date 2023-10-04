@@ -1,0 +1,22 @@
+<section>
+  <div class="wrapper">
+    <h1>Album Single</h1>
+    <p class="mb-3">
+      Receive data from remote API, display gallery of selected album. Open the image in LightBox with pagination. <br />
+      <small>https://jsonplaceholder.typicode.com/albums</small>
+    </p>
+    <h2>#{{ id }} - {{ title }}</h2>
+    <div class="gallery">
+      <figure class="gallery-figure" *ngFor="let image of photos; let i = index">
+        <img (click)="openImage(image, i)" [src]="image.thumbnailUrl" alt="" class="gallery-figure-item" />
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div *ngIf="selectedImage" class="lightbox" (click)="closeImage()">
+  <img [src]="selectedImage.url" class="lightbox-image" />
+  <button class="lightbox-nav lightbox-prev" (click)="$event.stopPropagation(); prevImage()">❮</button>
+  <button class="lightbox-nav lightbox-next" (click)="$event.stopPropagation(); nextImage()">❯</button>
+</div>

@@ -1,0 +1,31 @@
+{
+  "apps": [
+    {
+      "name": "angular-skeleton-dev",
+      "script": "dist/server/main.js",
+      "max_memory_restart": "250M",
+      "max_restarts": 10,
+      "env": {
+        "PORT": 4000
+      }
+    },
+    {
+      "name": "angular-skeleton-beta",
+      "script": "dist/server/main.js",
+      "max_memory_restart": "250M",
+      "max_restarts": 10,
+      "env": {
+        "PORT": 4081
+      }
+    },
+    {
+      "name": "angular-skeleton-prod",
+      "script": "dist/server/main.js",
+      "max_memory_restart": "250M",
+      "max_restarts": 10,
+      "env": {
+        "PORT": 4106
+      }
+    }
+  ]
+}

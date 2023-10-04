@@ -1,0 +1,75 @@
+<section>
+  <div class="wrapper">
+    <h1>Register</h1>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="card">
+      <div class="form-group" formGroupName="userData">
+        <div class="form-group">
+          <label class="form-label" for="username">Username</label>
+          <input formControlName="username" id="username" type="text" class="form-control" />
+          <div *ngIf="username?.touched && username?.invalid" class="alert">
+            <span *ngIf="username?.errors?.['required']"> Username field is required! </span>
+            <span *ngIf="username?.errors?.['cannotContainSpace']"> The username can not contain space! </span>
+            <span *ngIf="username?.hasError?.('containsUppercase')"> The username can not contain uppercase letter! </span>
+            <span *ngIf="username?.errors?.['nameIsForbidden']"> This username is forbidden! </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input formControlName="email" id="email" type="text" class="form-control" />
+          <div *ngIf="email?.touched && email?.invalid" class="alert">Please enter a valid email!</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <input formControlName="password" id="password" type="text" class="form-control" />
+          <div *ngIf="password?.touched && password?.invalid && password?.dirty" class="alert">
+            <span class="form-group-password-helper" *ngIf="password?.errors?.['required']">Password is required.</span>
+            <span class="form-group-password-helper" *ngIf="password?.errors?.['minlength']"
+              >Password should be at least 10 characters long.</span
+            >
+
+            <span class="form-group-password-helper" *ngIf="password?.errors?.['maxlength']"
+              >Password can be maximum 32 characters long.</span
+            >
+            <span class="form-group-password-helper" *ngIf="password?.errors?.['passwordContainsNumber']"
+              >Password should contain at least one number</span
+            >
+
+            <span class="form-group-password-helper" *ngIf="password?.errors?.['passwordContainsUppercase']">
+              Password should contain at least one uppercase letter.
+            </span>
+
+            <span class="form-group-password-helper" *ngIf="password?.errors?.['passwordContainsLowercase']">
+              Password should contain at least one lowercase letter.
+            </span>
+
+            <span class="form-group-password-helper" *ngIf="password?.errors?.['passwordContainsSpecChar']">
+              Password should contain at least one special character.
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="confirmPassword">Confirm Password</label>
+          <input formControlName="confirmPassword" id="confirmPassword" type="text" class="form-control" />
+          <div *ngIf="confirmPassword?.touched && confirmPassword?.invalid && confirmPassword?.dirty" class="alert">
+            <span
+              *ngIf="
+      confirmPassword?.errors?.['passwordMismatch']"
+            >
+              Passwords do not match.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3 form-check">
+        <label class="form-check-label" for="exampleCheck1">
+          <input type="checkbox" class="form-check-input" id="privacy" name="privacy" />
+          I have read and accept the <a class="form-label-link" href="#">Privacy Policy</a></label
+        >
+        <div *ngIf="privacy?.touched && privacy?.invalid" class="alert">Please accept the Privacy Policy</div>
+      </div>
+
+      <button class="form-submit btn btn-dark" type="submit">Sign Up</button>
+    </form>
+  </div>
+</section>

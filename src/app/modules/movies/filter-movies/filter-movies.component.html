@@ -1,0 +1,81 @@
+<h2>Filter</h2>
+<form [formGroup]="form" class="filter mb-4">
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <h4>Text field</h4>
+        <input type="text" [formControl]="control" placeholder="Search ..." id="formTitle" class="form-control mb-4" />
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group mb-4">
+        <h4>Select field</h4>
+        <select id="formYear" formControlName="formYear" class="form-select">
+          <option selected>Select Year ...</option>
+          <option *ngFor="let item of items$ | async | sortYears : 'year'">{{ item.year }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="form-group mb-4">
+        <h4>Radio buttons</h4>
+        <div class="form-check">
+          <input formControlName="formGenre" class="form-check-input" type="radio" name="genre" id="thriller" value="Thriller" />
+          <label class="form-check-label" for="thriller">Thriller </label>
+        </div>
+        <div class="form-check">
+          <input formControlName="formGenre" class="form-check-input" type="radio" name="genre" id="action" value="Action" />
+          <label class="form-check-label" for="action">Action </label>
+        </div>
+        <div class="form-check">
+          <input formControlName="formGenre" class="form-check-input" type="radio" name="genre" id="drama" value="Drama" />
+          <label class="form-check-label" for="drama">Drama </label>
+        </div>
+        <div class="form-check">
+          <input formControlName="formGenre" class="form-check-input" type="radio" name="genre" id="scifi" value="Sci-fi" />
+          <label class="form-check-label" for="scifi">Sci-fi </label>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group mb-4">
+        <h4>Checkbox</h4>
+        <div class="form-check">
+          <input formControlName="formImdb" class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+          <label class="form-check-label" for="flexCheckDefault"> At least 8.8 IMDb rating </label>
+        </div>
+      </div>
+      <button (click)="onCancel()" class="btn btn-dark">Reset Filter</button>
+    </div>
+  </div>
+</form>
+
+<h2>Movies</h2>
+<div class="movies grid-4">
+  <div
+    class="card"
+    *ngFor="
+      let item of (items$ | async) || []
+        | filter
+          : control.value
+          : form.get('formGenre')?.value || 'Select ...'
+          : form.get('formYear')?.value || 'Select ...'
+          : form.get('formImdb')?.value
+    "
+  >
+    <img class="card-img-top" [src]="item.image ? item.image : placeholder" [alt]="item.title" />
+    <h4 class="card-header">{{ item.title }}</h4>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Year: {{ item.year }}</li>
+      <li class="list-group-item">Genre: {{ item.genre }}</li>
+      <li class="list-group-item">IMDb Rating: {{ item.imdb }}</li>
+    </ul>
+    <div class="card-footer">
+      <button (click)="editMovie.emit(item)" type="button" class="btn btn-warning">Edit</button>
+      <button (click)="deleteMovie.emit(item.id)" type="button" class="btn btn-danger">Delete</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+$blue-light: #00b4db;
+:host {
+  display: block;
+}
+
+.child-list {
+  margin-left: 30px;
+  &-item {
+    &-link {
+      padding: 5px 0;
+      display: block;
+      &:hover {
+        color: $blue-light !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+@use 'variables' as *;
+
+// Vertical center
+%center-vertically {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Display block icon
+%icon {
+  display: inline-block;
+  min-width: 5px;
+  min-height: 5px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+@mixin icon($name) {
+  @extend %icon;
+  background-image: url($images-path + $name);
+}
+
+// Background image
+%img {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@mixin img($file) {
+  @extend %img;
+  background-image: url($images-path + $file);
+}
+
+// IE10 IE11 only
+@mixin ieonly() {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @content;
+  }
+}
+
+// Firefox only
+@mixin ffonly() {
+  @-moz-document url-prefix() {
+    @content;
+  }
+}
+
+// DOM element with fixed ratio - 100% width
+%imgRatio {
+  display: block;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-color: grey;
+}
+
+@mixin imgRatio($x, $y) {
+  @extend %imgRatio;
+  padding-top: ($y/$x) * 100%;
+}

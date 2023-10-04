@@ -1,0 +1,14 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# The "default" node version of nvm can be user customized with e.g.
+# $ nvm alias default 16.15.1
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && nvm use default
+
+npm run lint
+
+# See if you are commiting with the correct engines installed on your system (compared to the `engines` field in package.json`).
+# Might be an issue when we switch to docker (since this will always check the engines installed on your system and not the one that we 
+# actually use to build the app inside docker).
+npx check-engine

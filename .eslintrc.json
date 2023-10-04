@@ -1,0 +1,68 @@
+{
+  "root": true,
+  "ignorePatterns": ["commitlint.config.js", "src/app/utils/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": ["tsconfig.json"],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "eslint:recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:rxjs/recommended"
+      ],
+      "plugins": ["functional"],
+      "rules": {
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "@typescript-eslint/ban-types": [
+          "error",
+          {
+            "types": {
+              "Object": false
+            }
+          }
+        ],
+        "arrow-parens": ["error", "always"],
+        "no-trailing-spaces": "error",
+        "max-len": ["error", { "code": 140, "tabWidth": 2 }],
+        "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+        "@typescript-eslint/no-explicit-any": "off",
+        "functional/prefer-readonly-type": ["error", { "ignoreClass": true }],
+        "@typescript-eslint/prefer-readonly": ["error"],
+        "rxjs/no-implicit-any-catch": "off",
+        "@typescript-eslint/explicit-function-return-type": "error",
+        "rxjs/finnish": [
+          "error",
+          {
+            "functions": false
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {}
+    }
+  ]
+}

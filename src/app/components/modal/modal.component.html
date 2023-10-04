@@ -1,0 +1,23 @@
+<section>
+  <div class="wrapper">
+    <h1>Modal</h1>
+
+    <div class="modal" [ngClass]="{ open: isModalOpen }" (click)="closeModal()">
+      <div id="modal-dialog" class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title">Modal Title</h2>
+            <button type="button" class="close" (click)="closeModal()">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Modal content goes here.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="open-modal-btn" (click)="openModal()">Open Modal</button>
+  </div>
+</section>

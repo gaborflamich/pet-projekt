@@ -1,0 +1,109 @@
+$mojito: linear-gradient(to right, #93f9b9, #1d976c);
+$blue-light: #00b4db;
+$blue: linear-gradient(to right, #0083b0, #00b4db);
+$moon: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+$purple: #702cf5;
+
+$white: #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black: #000;
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &.complete {
+    background: $mojito;
+  }
+  &.purchased {
+    background: $mojito;
+  }
+
+  &-caption {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 450px;
+  }
+}
+
+.btn.btn-success {
+  background: $mojito;
+  color: black;
+  border: none;
+}
+
+.nav-link.text-white.active {
+  background: $blue;
+  &:hover {
+    color: black !important;
+  }
+}
+.badge {
+  background: $moon;
+  font-weight: 400;
+  padding: 5px 8px;
+  font-size: 16px;
+}
+.nav-link.text-white:hover {
+  color: $blue-light !important;
+}
+hr {
+  margin-bottom: 30px;
+}
+
+.card.success-card {
+  text-align: center;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  background: $mojito;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.fade-out {
+  animation: fade-out 1s forwards;
+}
+
+.card-img-top {
+  height: 305px;
+  object-fit: cover;
+}
+.card-header {
+  font-size: 18px;
+}
+.list-group-item {
+  font-size: 15px;
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.card-footer {
+  display: flex;
+  gap: 10px;
+}

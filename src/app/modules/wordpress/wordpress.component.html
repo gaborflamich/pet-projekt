@@ -1,0 +1,4 @@
+<article *ngFor="let item of postData" class="card">
+  <h4 class="card-title">{{ item.title }}</h4>
+  <div class="card-content" [innerHTML]="item.excerpt"></div>
+</article>

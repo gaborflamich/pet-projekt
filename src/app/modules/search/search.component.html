@@ -1,0 +1,17 @@
+<section>
+  <div class="wrapper">
+    <h1>Search</h1>
+    <p>
+      Receive data from remote API and Search for items. <br />
+      <small>https://jsonplaceholder.typicode.com/posts</small>
+    </p>
+
+    <input #titleInput [formControl]="control" type="text" class="form-control mb-3" placeholder="Search ..." />
+
+    <ul class="list-group">
+      <li *ngFor="let post of filteredPosts$ | async" class="list-group-item">
+        <span class="title">{{ post.title }}</span>
+      </li>
+    </ul>
+  </div>
+</section>

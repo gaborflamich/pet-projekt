@@ -1,0 +1,21 @@
+:host {
+  display: block;
+}
+.card {
+  padding: 10px;
+  &:hover .card-title-link {
+    color: orange;
+  }
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  &-title {
+    &-link {
+      color: black;
+      display: block;
+      text-decoration: none;
+    }
+  }
+}

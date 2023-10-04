@@ -1,0 +1,3 @@
+{
+  "src/{app,environments,assets}/**/*.{ts,js,css,scss,html}*": "prettier --write",
+}
