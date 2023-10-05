@@ -7,10 +7,14 @@ import { AppComponent } from './app.component';
 import { appRoutes } from './app.routing';
 import { CoreModule } from './core/core.module';
 import { AppEnvironment, CommonHttpInterceptor } from '@trendency/core';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { SidebarComponent } from './core/components/sidebar/sidebar.component';
+
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 import { DecimalPipe, registerLocaleData } from '@angular/common';
 import localeHu from '@angular/common/locales/hu';
@@ -25,9 +29,13 @@ registerLocaleData(localeHu);
       initialNavigation: 'enabledBlocking',
     }),
     CoreModule,
+    SidebarComponent,
+
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
-    SidebarComponent,
+
+    AngularFireModule,
+    AngularFireAuthModule,
   ],
   providers: [
     DecimalPipe,
