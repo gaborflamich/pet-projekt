@@ -1,6 +1,11 @@
+@import 'shared';
 $blue-light: #00b4db;
 :host {
-  display: block;
+  box-shadow: $shadow;
+  display: none;
+  @include media-breakpoint-up(md) {
+    display: block;
+  }
 }
 
 .child-list {

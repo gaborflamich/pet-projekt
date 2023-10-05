@@ -83,8 +83,11 @@ hr {
 }
 
 .card-img-top {
-  height: 305px;
   object-fit: cover;
+  height: 290px;
+  @media (min-width: 768px) {
+    height: 305px;
+  }
 }
 .card-header {
   font-size: 18px;
@@ -94,13 +97,27 @@ hr {
 }
 .grid-3 {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 992px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 .grid-4 {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 992px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (min-width: 1080px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .card-footer {

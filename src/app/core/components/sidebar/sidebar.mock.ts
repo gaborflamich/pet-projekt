@@ -44,10 +44,10 @@ export const MockSidebar: INav = {
       title: 'Albums',
       url: 'albums',
     },
-    {
-      title: 'Pipes',
-      url: 'pipe',
-    },
+    // {
+    //   title: 'Pipes',
+    //   url: 'pipe',
+    // },
   ],
   todayPlan: [
     {

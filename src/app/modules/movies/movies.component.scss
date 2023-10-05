@@ -1,3 +1,4 @@
+@import 'shared';
 $white: #fff;
 $gray-100: #f8f9fa;
 $gray-200: #e9ecef;
@@ -18,8 +19,11 @@ $black: #000;
 }
 .movies {
   background: $gray-200;
-  padding: 30px;
   border-radius: 6px;
+  padding: 10px;
+  @include media-breakpoint-up(md) {
+    padding: 30px;
+  }
 }
 
 .card {

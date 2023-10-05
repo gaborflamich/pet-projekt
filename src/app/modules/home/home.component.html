@@ -1,3 +1,11 @@
 <main class="">
-  <div class="container"></div>
+  <div class="container">
+    <div class="cards" *ngIf="mockData$ | async as mockData">
+      <a *ngFor="let item of mockData.apps; let i = index" [routerLink]="item.url">
+        <div class="card">
+          {{ item.title }}
+        </div>
+      </a>
+    </div>
+  </div>
 </main>
