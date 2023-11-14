@@ -8,7 +8,7 @@
       <a [routerLink]="item.url" routerLinkActive="active" class="nav-link text-white">{{ item.title }}</a>
       <ul *ngIf="item.children" class="child-list">
         <li *ngFor="let child of item.children" class="child-list-item">
-          <a class="child-list-item-link text-white" [href]="child.url">{{ child.title }}</a>
+          <a class="child-list-item-link text-white" [routerLink]="child.url">{{ child.title }}</a>
         </li>
       </ul>
     </li>

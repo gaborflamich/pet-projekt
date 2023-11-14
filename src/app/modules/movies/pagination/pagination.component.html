@@ -17,9 +17,6 @@
     <li class="page-item">
       <button [disabled]="currentPage$.value === 1" (click)="previousPage()" class="page-link bg-dark text-white" href="#">Previous</button>
     </li>
-    <li class="page-item"><a class="page-link bg-dark text-white" href="#">1</a></li>
-    <li class="page-item"><a class="page-link bg-dark text-white" href="#">2</a></li>
-    <li class="page-item"><a class="page-link bg-dark text-white" href="#">3</a></li>
     <li class="page-item">
       <button [disabled]="currentPage$.value === totalPages" (click)="nextPage()" class="page-link bg-dark text-white">Next</button>
     </li>
